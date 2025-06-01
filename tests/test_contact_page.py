@@ -35,7 +35,7 @@ class TestContactPage:
         self.contact_page.submit()
         assert verify_form_submission(page, expected_success=True, timeout=3000), "Form submission verification failed"
 
-    def test_privacy_policy_link_has_valid_href_should_fail(self, page):
+    def test_privacy_policy_link_has_valid_href(self, page):
         """Test that privacy policy link has a valid href attribute - EXPECTED TO FAIL"""
         privacy_link = page.locator('//*[@id="field_2_16"]/div/label/a')
         assert privacy_link.is_visible(), "Privacy policy link should be visible"
@@ -45,7 +45,7 @@ class TestContactPage:
         assert href is not None and href != "", "Privacy policy link should have a valid href attribute"
         assert href.startswith('http') or href.startswith('/'), f"Privacy policy href should be a valid URL or path, got: '{href}'"
     
-    def test_invalid_name_validation_should_fail(self, page):
+    def test_invalid_name_validation(self, page):
         """Test that single special characters should not be accepted as names - EXPECTED TO FAIL"""
         setup_form_submission_mock(page, success=False, delay_ms=500)
         # Test with dash as first name
